@@ -1,5 +1,6 @@
 read_96_well_plate <- function(fileName) {
-    well_plate <- read.table(fileName, sep="\t", as.is=TRUE, check.names=FALSE, header=TRUE)
+    well_plate <- read.table(fileName, sep="\t", as.is=TRUE, 
+        check.names=FALSE, header=TRUE, colClasses="character")
     well_plate[well_plate==""] <- NA
     well_plate[well_plate=="NA"] <- NA
 

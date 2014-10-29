@@ -14,6 +14,12 @@ test_that("can process well names", {
     expect_equal(rownames(well_plate_96), c("A", "B", "C", "D", "E", "F", "G", "H"))
 } )
 
+test_that("all ids are characters", {
+    well_plate_96 <- read_96_well_plate("well_correct.txt")
+    expect_true(is.character(well_plate_96[1,8]))
+    expect_true(is.character(well_plate_96[1,1]))
+} )
+
 test_that("can values are OK", {
     well_plate_96 <- read_96_well_plate("well_correct.txt")
     expect_equal(well_plate_96["A", "11"], "P1")
