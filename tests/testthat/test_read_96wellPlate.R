@@ -20,7 +20,7 @@ test_that("all ids are characters", {
     expect_true(is.character(well_plate_96[1,1]))
 } )
 
-test_that("can values are OK", {
+test_that("values are OK", {
     well_plate_96 <- read_96_well_plate("well_correct.txt")
     expect_equal(well_plate_96["A", "11"], "P1")
     expect_equal(well_plate_96["B", "11"], "158")
