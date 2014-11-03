@@ -4,6 +4,6 @@ read_qiime_map <- function(fileName) {
 }
 
 write_qiime_map <- function(map, fileName) {
-    write.table(map, fileName, sep="\t")
+    write.table(map, fileName, sep="\t", quote=FALSE)
     TRUE
 }
