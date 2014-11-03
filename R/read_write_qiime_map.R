@@ -1,5 +1,6 @@
 read_qiime_map <- function(fileName) {
     map <- read.table(fileName, sep="\t", as.is=TRUE, header=TRUE)
+    map$SampleID <- as.character(map$SampleID)
     map
 }
 
