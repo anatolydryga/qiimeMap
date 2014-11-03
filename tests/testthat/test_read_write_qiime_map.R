@@ -13,3 +13,13 @@ test_that("write/read are consistent", {
     map <- read_qiime_map("mapping_file.txt")
     expect_equivalent(mapping_file, map)
 } )
+
+test_that("all ids are characters", {
+    map <- read_qiime_map("mapping_file.txt")
+    expect_true(is.character(map$SampleID))
+} )
+
+test_that("all ids are characters even for the metadata file", {
+    map <- read_qiime_map("metadata.txt")
+    expect_true(is.character(map$SampleID))
+} )
