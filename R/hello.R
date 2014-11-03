@@ -1,3 +1,0 @@
-yetAnotherHelloWorld <- function() {
-    "Hello, World!"
-}
