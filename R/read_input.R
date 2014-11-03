@@ -40,3 +40,12 @@ is_unique_ids <- function(well_plate) {
 
     (len == len_uniq)
 }
+
+
+read_barcodes <- function(fileName) {
+    barcodes <- read.table(fileName, sep="\t", as.is=TRUE, header=TRUE)
+    if ( ! is_unique_ids(barcodes$BarcodeSequence)) {
+        stop("Duplicate Barcodes found.")
+    }
+    barcodes
+}
