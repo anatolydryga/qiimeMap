@@ -25,3 +25,9 @@ test_that("each well position, plate number is matched to barcodes", {
     expect_equal(length(mapping_file$BarcodeSequence), 64)
     expect_equal(sum(is.na(mapping_file$BarcodeSequence)), 0)
 } )
+
+test_that("all SampleIDs with plateNumber, wellPositon have corresponing BarcodeSequence and LinkerPrimerSequence", {
+    pos2barcodes <- read_barcodes("PlateNumberWellPosition2Barcodes_wrongPlateNumber.txt")
+    well_plate_map <- transform_96wellPlate_to_map(read_96_well_plate("well_correct.txt"), 2)
+    expect_error(add_barcodes(well_plate_map, pos2barcodes), "Cannot find required barcodes.")
+})
