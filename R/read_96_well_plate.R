@@ -1,3 +1,10 @@
+#' read 96 well plate.
+#'
+#' Reads 96 well plate: rows are A, B,..., H and columns are 1, 2,..., 12.
+#'
+#' @param fileName 96 plate 
+#' @return dataframe 8 by 12 with row names A,B,...,H and columns are 1,2,...,12.
+#' each element is SampleID (repersented as char)
 read_96_well_plate <- function(fileName) {
     well_plate <- read.table(fileName, sep="\t", as.is=TRUE, 
         check.names=FALSE, header=TRUE, colClasses="character")
@@ -23,13 +30,16 @@ read_96_well_plate <- function(fileName) {
     well_plate
 }
 
+
 is_correct_col_names <- function(columnNames) {
     ( ! NA %in% columnNames) && all(columnNames == as.character(seq(1,12)))
 }
 
+
 is_correct_row_names <- function(rowNames) {
     (! NA %in% rowNames) && all(rowNames == c("A", "B", "C", "D", "E", "F", "G", "H"))
 }
+
 
 is_unique_ids <- function(well_plate) {
     ids <- unlist(well_plate)
@@ -42,10 +52,3 @@ is_unique_ids <- function(well_plate) {
 }
 
 
-read_barcodes <- function(fileName) {
-    barcodes <- read.table(fileName, sep="\t", as.is=TRUE, header=TRUE)
-    if ( ! is_unique_ids(barcodes$BarcodeSequence)) {
-        stop("Duplicate Barcodes found.")
-    }
-    barcodes
-}
