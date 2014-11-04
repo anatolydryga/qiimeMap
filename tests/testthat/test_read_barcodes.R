@@ -22,3 +22,7 @@ test_that("columns names are plateNumber, wellPosition, BarcodeSequence, LinkerP
 test_that("no duplicate barcodes even in different plates", {
     expect_error(read_barcodes("PlateNumberWellPosition2Barcodes_withDuplicates.txt"), "Duplicate Barcodes found.")
 } )
+
+test_that("no duplicate barcodes even in different plates", {
+    expect_error(read_barcodes("PlateNumberWellPosition2Barcodes_incorectNumber.txt"), "Does not have correct number of barcodes.")
+} )
