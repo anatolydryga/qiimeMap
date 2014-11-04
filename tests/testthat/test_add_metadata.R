@@ -30,5 +30,9 @@ test_that("number of samples stays the same in mapping file", {
 })
 
 test_that("NAs are added for the cases where metadata was missing", {
-    expect_true(FALSE)
+    map_w_meta <- add_metadata(mapping, metadata)
+    nas <- subset(map_w_meta, SampleID %in% c("A1Lyme", "A2Lyme", "A3Lyme", "B1", "B2", "B3", "B4", "P1", "P2"))
+    expect_true(all(is.na(nas$QT)))
+    expect_true(all(is.na(nas$Read)))
+    expect_true(all(is.na(nas$MMM)))
 })
