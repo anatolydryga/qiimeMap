@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 library(argparse)
+library(qiimeMap)
+library(reshape2)
 
 parser <- ArgumentParser()
 parser$add_argument("-i", help="96 well plate file", type="character", required=TRUE)
