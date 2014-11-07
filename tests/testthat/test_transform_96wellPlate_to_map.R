@@ -22,6 +22,10 @@ test_that("all plates are 1", {
     expect_equal(qiime_wp1$plateNumber, rep(1, 64))
 } )
 
+test_that("rownames just counts", {
+    expect_equivalent(rownames(qiime_wp1), as.character(seq(1, 64)))
+} )
+
 test_that("SampleIDs are sorted", {
     expect_false(is.unsorted(qiime_wp1$SampleID))
 } )

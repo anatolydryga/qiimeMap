@@ -16,5 +16,7 @@ transform_96wellPlate_to_map <- function(wellPlateTable, plateNumber) {
     map_w_na <- data.frame("SampleID"=ids, "plateNumber"=rep(plateNumber, nrow(let_number_id)), 
         "wellPosition"=well_position, stringsAsFactors=FALSE)
     mapping <- map_w_na[complete.cases(map_w_na), ]
-    mapping[order(mapping$SampleID), ]
+    mapping <- mapping[order(mapping$SampleID), ]
+    rownames(mapping) <- c()
+    mapping
 }
