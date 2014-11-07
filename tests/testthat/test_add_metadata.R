@@ -12,7 +12,8 @@ test_that("all columns in metadata were added(except SampleID)", {
 
 test_that("some columns were added", {
     map_w_meta <- add_metadata(mapping, metadata, c("Read", "QT"))
-    expect_equal(ncol(map_w_meta), ncol(mapping) + 3)
+    expect_equal(ncol(map_w_meta), ncol(mapping) + 2)
+    expect_true( ! "MMM" %in% colnames(map_w_meta))
 })
 
 test_that("cannot add nonexistent column", {

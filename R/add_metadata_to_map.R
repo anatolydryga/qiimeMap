@@ -9,11 +9,12 @@ add_metadata <- function(qiime_mapping, metadata, columns_to_add=c()) {
     if ( ! have_shared_ids(qiime_mapping, metadata, id)) {
         stop("Cannot find any SampleIDs that are shared.") 
     }
+    merged <- merge(qiime_mapping, metadata, by=id, all.x=TRUE)
+
     qiime_mapping_columns <- colnames(qiime_mapping)
     metadata_columns <- get_metadata_columns(metadata, columns_to_add)
-    merged <- merge(qiime_mapping, metadata, by=id, all.x=TRUE)
+    metadata_columns <- remove_id_column(metadata_columns, id)
     merged[c(qiime_mapping_columns, metadata_columns)]
-    merged
 }
 
 have_shared_ids <- function(map, meta, id) {
@@ -28,4 +29,8 @@ get_metadata_columns <- function(metadata, columns_to_add) {
         stop("Column does not exist in the metadata file.")
     }
     columns_to_add
+}
+
+remove_id_column <- function(data, id) {
+    data[data != id]
 }
