@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 library(argparse)
+library(qiimeMap)
+
 
 parser <- ArgumentParser()
 parser$add_argument("-i", help="sample IDs with positions file", type="character", required=TRUE)
