@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library(argparse)
+library(qiimeMap)
 
 parser <- ArgumentParser()
 parser$add_argument("-i", help="qiime mapping file", type="character", required=TRUE)
