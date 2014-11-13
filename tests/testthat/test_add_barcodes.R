@@ -31,3 +31,10 @@ test_that("all SampleIDs with plateNumber, wellPositon have corresponing Barcode
     well_plate_map <- transform_96wellPlate_to_map(read_96_well_plate("well_correct.txt"), 2)
     expect_error(add_barcodes(well_plate_map, pos2barcodes), "Cannot find required barcodes.")
 })
+
+test_that("one missing and two repeated samples positions are caught", {
+    no_first_row <- well_plate_map[2:nrow(well_plate_map),]
+    repeats <- rbind(no_first_row[1,], no_first_row)
+    repeats[1,1] <- "newNonExistentId"
+    expect_error(add_barcodes(repeats, pos2barcodes), "PlateNumber, wellPosition columns are not unique.")
+})
