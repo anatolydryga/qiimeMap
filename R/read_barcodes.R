@@ -5,7 +5,7 @@
 #' plateNumber, wellPosition, BarcodeSequence, LinkerPrimerSequence.
 #'
 #' @param fileName barcode, linker and position file
-read_barcodes <- function(fileName) {
+read_barcodes <- function(fileName, n_plates=2, wells_per_plate=96) {
     barcodes <- read.table(fileName, sep="\t", as.is=TRUE, header=TRUE)
     if (nrow(barcodes) != n_plates * wells_per_plate) {
         stop("Does not have correct number of barcodes.")
@@ -15,6 +15,3 @@ read_barcodes <- function(fileName) {
     }
     barcodes
 }
-
-n_plates <- 2
-wells_per_plate <- 96
