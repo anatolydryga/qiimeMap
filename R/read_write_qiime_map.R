@@ -4,7 +4,7 @@ read_qiime_map <- function(fileName) {
     if ( ! id %in% colnames(map) ) {
         stop("No SampleID found in map.") 
     }
-    map$SampleID <- as.character(map$SampleID)
+    map[[id]] <- as.character(map[[id]])
     map
 }
 
